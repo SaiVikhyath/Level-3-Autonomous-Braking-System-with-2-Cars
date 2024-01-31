@@ -1,0 +1,56 @@
+[System]
+Name='SaiVikhyathKudhroli'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=12
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='brakingForceA'
+Range=[0 150]
+NumMFs=3
+MF1='low':'sigmf',[-0.2 55]
+MF2='medium':'gaussmf',[10 75]
+MF3='high':'sigmf',[0.2 95]
+
+[Input2]
+Name='distanceBetweenCars'
+Range=[-100 100]
+NumMFs=2
+MF1='far':'sigmf',[-0.15 -20]
+MF2='close':'sigmf',[0.2 -15]
+
+[Input3]
+Name='roadCondition'
+Range=[-50 50]
+NumMFs=2
+MF1='LCW':'sigmf',[-0.11 -3.5]
+MF2='HCW':'sigmf',[0.115 12]
+
+[Output1]
+Name='brakingForceB'
+Range=[0 250]
+NumMFs=3
+MF1='low':'sigmf',[-0.1 80]
+MF2='medium':'gaussmf',[20 125]
+MF3='high':'sigmf',[0.1 170]
+
+[Rules]
+1 2 1, 2 (0.95) : 1
+1 2 2, 3 (0.95) : 1
+1 1 1, 1 (0.9) : 1
+1 1 2, 1 (0.9) : 1
+2 2 1, 3 (0.95) : 1
+2 2 2, 3 (0.95) : 1
+2 1 1, 1 (0.9) : 1
+2 1 2, 2 (0.9) : 1
+3 2 1, 3 (0.95) : 1
+3 2 2, 3 (0.95) : 1
+3 1 1, 2 (0.9) : 1
+3 1 2, 2 (0.9) : 1
